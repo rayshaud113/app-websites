@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeautyVault — Your Beauty, Curated</title>
+    <meta name="description" content="Discover top beauty products, book expert consultants, and earn as a creator. The all-in-one beauty marketplace.">
+    <meta property="og:title" content="BeautyVault — Your Beauty, Curated">
+    <meta property="og:description" content="Discover top beauty products, book expert consultants, and earn as a creator.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/og-image.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --plum: #6B2D5B;
+            --plum-dark: #4a1e3f;
+            --plum-light: #8a3d76;
+            --rose-gold: #B76E79;
+            --rose-gold-light: #d4939c;
+            --pink: #F8C8DC;
+            --pink-light: #FDE8F0;
+            --cream: #FFF9F5;
+            --white: #FFFFFF;
+            --gray-100: #F7F3F5;
+            --gray-200: #EDE5E9;
+            --gray-600: #6B5B63;
+            --gray-800: #2D1F27;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Nunito', sans-serif; color: var(--gray-800); line-height: 1.6; overflow-x: hidden; }
+        h1, h2, h3, .section-title { font-family: 'Playfair Display', serif; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* Nav */
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(107,45,91,0.97); backdrop-filter: blur(10px); padding: 16px 0; }
+        nav.scrolled { box-shadow: 0 2px 20px rgba(107,45,91,0.2); }
+        nav .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--white); text-decoration: none; }
+        .logo span { color: var(--pink); }
+        .nav-links { display: flex; gap: 32px; align-items: center; list-style: none; }
+        .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--pink); }
+        .nav-cta { background: var(--rose-gold); color: var(--white) !important; padding: 10px 24px; border-radius: 50px; transition: all 0.2s; }
+        .nav-cta:hover { background: var(--rose-gold-light); transform: translateY(-1px); }
+        .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+        .mobile-toggle span { display: block; width: 24px; height: 2px; background: white; margin: 6px 0; }
+
+        /* Hero */
+        .hero { background: linear-gradient(135deg, var(--plum) 0%, var(--plum-dark) 50%, #3a1530 100%); padding: 160px 0 120px; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -100px; right: -100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(183,110,121,0.2), transparent 70%); border-radius: 50%; }
+        .hero::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 80px; background: var(--cream); clip-path: ellipse(55% 100% at 50% 100%); }
+        .hero .container { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; z-index: 2; }
+        .hero-content {}
+        .hero-badge { display: inline-block; background: rgba(248,200,220,0.15); color: var(--pink); padding: 8px 20px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; margin-bottom: 24px; border: 1px solid rgba(248,200,220,0.2); }
+        .hero h1 { font-size: 3.4rem; font-weight: 700; color: var(--white); line-height: 1.15; margin-bottom: 20px; }
+        .hero h1 em { font-style: italic; color: var(--pink); }
+        .hero p { font-size: 1.15rem; color: rgba(255,255,255,0.75); margin-bottom: 36px; max-width: 480px; }
+        .btn-group { display: flex; gap: 16px; flex-wrap: wrap; }
+        .btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; border-radius: 50px; font-size: 1rem; font-weight: 700; text-decoration: none; transition: all 0.3s; cursor: pointer; border: none; font-family: 'Nunito', sans-serif; }
+        .btn-primary { background: var(--rose-gold); color: white; }
+        .btn-primary:hover { background: var(--rose-gold-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(183,110,121,0.4); }
+        .btn-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.3); }
+        .btn-outline:hover { border-color: var(--pink); color: var(--pink); }
+        .hero-visual { display: flex; justify-content: center; align-items: center; }
+        .hero-phone { width: 280px; height: 560px; background: linear-gradient(145deg, #2d1f27, #1a1018); border-radius: 36px; border: 3px solid rgba(183,110,121,0.3); position: relative; overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.3), 0 0 60px rgba(183,110,121,0.15); }
+        .hero-phone::before { content: ''; position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 100px; height: 28px; background: #000; border-radius: 14px; z-index: 5; }
+        .phone-inner { position: absolute; top: 40px; left: 12px; right: 12px; bottom: 12px; background: linear-gradient(180deg, var(--plum-dark), #2a1525); border-radius: 24px; padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+        .phone-header { text-align: center; color: white; font-family: 'Playfair Display', serif; font-size: 0.9rem; opacity: 0.9; }
+        .phone-product { background: rgba(255,255,255,0.06); border-radius: 14px; padding: 14px; display: flex; gap: 12px; }
+        .phone-product .thumb { width: 48px; height: 48px; background: linear-gradient(135deg, var(--rose-gold), var(--pink)); border-radius: 10px; flex-shrink: 0; }
+        .phone-product .info { flex: 1; }
+        .phone-product .info .line { height: 7px; background: rgba(255,255,255,0.15); border-radius: 4px; margin-bottom: 6px; }
+        .phone-product .info .line.short { width: 50%; }
+        .phone-product .info .tag { display: inline-block; background: var(--rose-gold); padding: 2px 8px; border-radius: 4px; font-size: 0.6rem; color: white; font-weight: 700; margin-top: 4px; }
+
+        /* Features */
+        .features { padding: 100px 0; background: var(--cream); }
+        .section-label { text-align: center; color: var(--rose-gold); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 12px; font-family: 'Nunito', sans-serif; }
+        .section-title { text-align: center; font-size: 2.4rem; font-weight: 700; color: var(--plum); margin-bottom: 16px; }
+        .section-subtitle { text-align: center; color: var(--gray-600); font-size: 1.05rem; max-width: 600px; margin: 0 auto 60px; }
+        .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+        .feature-card { background: white; padding: 36px 24px; border-radius: 20px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; border: 1px solid var(--gray-200); }
+        .feature-card:hover { transform: translateY(-8px); box-shadow: 0 16px 48px rgba(107,45,91,0.08); }
+        .feature-icon { width: 72px; height: 72px; background: linear-gradient(135deg, var(--pink-light), var(--pink)); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 2rem; }
+        .feature-card h3 { font-size: 1.15rem; color: var(--plum); margin-bottom: 10px; }
+        .feature-card p { color: var(--gray-600); font-size: 0.9rem; }
+
+        /* Pricing */
+        .pricing { padding: 100px 0; background: var(--white); }
+        .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; max-width: 960px; margin: 0 auto; }
+        .price-card { background: var(--cream); padding: 40px 32px; border-radius: 20px; text-align: center; border: 2px solid transparent; transition: all 0.3s; position: relative; }
+        .price-card.featured { border-color: var(--rose-gold); background: white; transform: scale(1.05); box-shadow: 0 20px 60px rgba(107,45,91,0.12); }
+        .price-card.featured .popular-badge { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: var(--rose-gold); color: white; padding: 6px 20px; border-radius: 50px; font-size: 0.8rem; font-weight: 700; }
+        .price-card h3 { font-size: 1.4rem; color: var(--plum); margin-bottom: 8px; }
+        .price-card .price { font-size: 2.8rem; font-weight: 800; color: var(--plum); margin: 16px 0; font-family: 'Nunito', sans-serif; }
+        .price-card .price small { font-size: 1rem; font-weight: 400; color: var(--gray-600); }
+        .price-card .price-desc { color: var(--gray-600); font-size: 0.9rem; margin-bottom: 24px; }
+        .price-card ul { list-style: none; text-align: left; margin-bottom: 32px; }
+        .price-card ul li { padding: 8px 0; font-size: 0.9rem; color: var(--gray-600); border-bottom: 1px solid var(--gray-200); }
+        .price-card ul li::before { content: '✓'; color: var(--rose-gold); font-weight: 700; margin-right: 10px; }
+        .price-card .btn { width: 100%; justify-content: center; }
+        .price-card .btn-secondary { background: var(--plum); color: white; }
+        .price-card .btn-secondary:hover { background: var(--plum-light); }
+
+        /* Creator */
+        .creator { padding: 100px 0; background: linear-gradient(135deg, var(--plum), var(--plum-dark)); position: relative; overflow: hidden; }
+        .creator::before { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(248,200,220,0.1), transparent 70%); border-radius: 50%; }
+        .creator .container { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; z-index: 2; }
+        .creator-content h2 { font-size: 2.4rem; color: white; margin-bottom: 20px; }
+        .creator-content p { color: rgba(255,255,255,0.8); font-size: 1.05rem; margin-bottom: 28px; line-height: 1.8; }
+        .creator-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 32px; }
+        .creator-stat { text-align: center; }
+        .creator-stat .num { font-size: 2rem; font-weight: 800; color: var(--pink); font-family: 'Nunito', sans-serif; }
+        .creator-stat .label { font-size: 0.8rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 1px; }
+        .creator-visual { display: flex; justify-content: center; }
+        .creator-card { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 32px; width: 320px; backdrop-filter: blur(10px); }
+        .creator-card .avatar { width: 64px; height: 64px; background: linear-gradient(135deg, var(--rose-gold), var(--pink)); border-radius: 50%; margin: 0 auto 16px; }
+        .creator-card .name { text-align: center; color: white; font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 4px; }
+        .creator-card .role { text-align: center; color: var(--pink); font-size: 0.85rem; margin-bottom: 20px; }
+        .creator-card .earnings { background: rgba(255,255,255,0.06); border-radius: 12px; padding: 16px; text-align: center; }
+        .creator-card .earnings .amount { font-size: 1.8rem; font-weight: 800; color: white; }
+        .creator-card .earnings .period { font-size: 0.8rem; color: rgba(255,255,255,0.5); }
+
+        /* Testimonials */
+        .testimonials { padding: 100px 0; background: var(--cream); }
+        .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+        .testimonial-card { background: white; padding: 32px; border-radius: 20px; border: 1px solid var(--gray-200); }
+        .testimonial-card .stars { color: #F5A623; font-size: 1.1rem; margin-bottom: 16px; letter-spacing: 2px; }
+        .testimonial-card p { color: var(--gray-600); font-size: 0.95rem; font-style: italic; line-height: 1.7; margin-bottom: 20px; }
+        .testimonial-card .author { display: flex; align-items: center; gap: 12px; }
+        .testimonial-card .author .avatar { width: 44px; height: 44px; background: linear-gradient(135deg, var(--pink), var(--rose-gold)); border-radius: 50%; flex-shrink: 0; }
+        .testimonial-card .author .info { font-size: 0.9rem; }
+        .testimonial-card .author .info strong { color: var(--plum); }
+        .testimonial-card .author .info span { display: block; color: var(--gray-600); font-size: 0.8rem; }
+
+        /* Signup */
+        .signup { padding: 100px 0; background: var(--white); }
+        .signup .container { text-align: center; }
+        .signup h2 { font-size: 2.4rem; color: var(--plum); margin-bottom: 16px; }
+        .signup p { color: var(--gray-600); font-size: 1.1rem; margin-bottom: 40px; }
+        .signup-form { display: flex; gap: 12px; max-width: 500px; margin: 0 auto 32px; }
+        .signup-form input { flex: 1; padding: 16px 20px; border: 2px solid var(--gray-200); background: white; color: var(--gray-800); border-radius: 50px; font-size: 1rem; font-family: 'Nunito', sans-serif; outline: none; transition: border-color 0.2s; }
+        .signup-form input:focus { border-color: var(--rose-gold); }
+        .signup-form button { padding: 16px 32px; background: var(--rose-gold); color: white; border: none; border-radius: 50px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.2s; font-family: 'Nunito', sans-serif; white-space: nowrap; }
+        .signup-form button:hover { background: var(--rose-gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(183,110,121,0.3); }
+        .download-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .store-btn { display: inline-flex; align-items: center; gap: 12px; background: var(--plum); padding: 14px 28px; border-radius: 50px; color: white; text-decoration: none; transition: all 0.2s; }
+        .store-btn:hover { background: var(--plum-light); transform: translateY(-1px); }
+        .store-btn .store-icon { font-size: 1.5rem; }
+        .store-btn .store-text { text-align: left; }
+        .store-btn .store-text small { display: block; font-size: 0.7rem; opacity: 0.7; }
+        .store-btn .store-text span { display: block; font-size: 0.95rem; font-weight: 700; }
+
+        /* Footer */
+        footer { background: var(--plum-dark); padding: 60px 0 30px; color: rgba(255,255,255,0.7); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+        .footer-brand .logo { font-size: 1.3rem; display: block; margin-bottom: 12px; }
+        .footer-brand p { font-size: 0.9rem; line-height: 1.6; }
+        .footer-col h4 { color: white; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; font-family: 'Nunito', sans-serif; }
+        .footer-col a { display: block; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; padding: 4px 0; transition: color 0.2s; }
+        .footer-col a:hover { color: var(--pink); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; text-align: center; font-size: 0.85rem; }
+
+        /* Animations */
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero .container { grid-template-columns: 1fr; text-align: center; }
+            .hero p { margin: 0 auto 36px; }
+            .btn-group { justify-content: center; }
+            .hero-visual { margin-top: 40px; }
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+            .price-card.featured { transform: none; }
+            .creator .container { grid-template-columns: 1fr; text-align: center; }
+            .creator-visual { margin-top: 40px; }
+            .testimonials-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .nav-links { display: none; }
+            .mobile-toggle { display: block; }
+        }
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2.4rem; }
+            .section-title { font-size: 1.8rem; }
+            .features-grid { grid-template-columns: 1fr; }
+            .signup-form { flex-direction: column; }
+            .signup-form input, .signup-form button { border-radius: 12px; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .creator-stats { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="container">
+            <a href="#" class="logo">Beauty<span>Vault</span></a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Consultants</a></li>
+                <li><a href="#creators">Creators</a></li>
+                <li><a href="#download" class="nav-cta">Join Waitlist</a></li>
+            </ul>
+            <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">✨ The All-in-One Beauty Marketplace</div>
+                <h1>Your Beauty, <em>Curated</em></h1>
+                <p>Discover top beauty products, book expert consultants, and earn as a creator. The all-in-one beauty marketplace.</p>
+                <div class="btn-group">
+                    <a href="#download" class="btn btn-primary">Join the Waitlist</a>
+                    <a href="#features" class="btn btn-outline">Explore Features</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-phone">
+                    <div class="phone-inner">
+                        <div class="phone-header">✨ For You</div>
+                        <div class="phone-product">
+                            <div class="thumb"></div>
+                            <div class="info">
+                                <div class="line"></div>
+                                <div class="line short"></div>
+                                <div class="tag">$34.00</div>
+                            </div>
+                        </div>
+                        <div class="phone-product">
+                            <div class="thumb"></div>
+                            <div class="info">
+                                <div class="line"></div>
+                                <div class="line short"></div>
+                                <div class="tag">$28.00</div>
+                            </div>
+                        </div>
+                        <div class="phone-product">
+                            <div class="thumb"></div>
+                            <div class="info">
+                                <div class="line"></div>
+                                <div class="line short"></div>
+                                <div class="tag">$42.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-label">Features</div>
+            <h2 class="section-title">Everything Beauty, One App</h2>
+            <p class="section-subtitle">From discovery to delivery, we've got every step of your beauty journey covered.</p>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🛍️</div>
+                    <h3>Shop Top Vendors</h3>
+                    <p>Curated products from the best beauty brands, all in one place.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">👩‍💼</div>
+                    <h3>Book Consultants</h3>
+                    <p>Connect with expert beauty consultants for personalized advice.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">💎</div>
+                    <h3>Become a Creator</h3>
+                    <p>Earn commissions promoting products you genuinely love.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Beauty Quiz</h3>
+                    <p>Get personalized product recommendations tailored to your skin and style.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-label">For Consultants</div>
+            <h2 class="section-title">Grow Your Beauty Business</h2>
+            <p class="section-subtitle">Choose the plan that fits your practice. Upgrade anytime as you grow.</p>
+            <div class="pricing-grid">
+                <div class="price-card fade-in">
+                    <h3>Basic</h3>
+                    <div class="price">$19<small>/mo</small></div>
+                    <div class="price-desc">Perfect for getting started</div>
+                    <ul>
+                        <li>Profile listing</li>
+                        <li>Up to 20 bookings/month</li>
+                        <li>Basic analytics</li>
+                        <li>Email support</li>
+                    </ul>
+                    <a href="#download" class="btn btn-secondary">Get Started</a>
+                </div>
+                <div class="price-card featured fade-in">
+                    <div class="popular-badge">Most Popular</div>
+                    <h3>Pro</h3>
+                    <div class="price">$49<small>/mo</small></div>
+                    <div class="price-desc">For growing consultants</div>
+                    <ul>
+                        <li>Featured profile placement</li>
+                        <li>Unlimited bookings</li>
+                        <li>Advanced analytics</li>
+                        <li>Client management tools</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <a href="#download" class="btn btn-primary">Get Started</a>
+                </div>
+                <div class="price-card fade-in">
+                    <h3>VIP</h3>
+                    <div class="price">$99<small>/mo</small></div>
+                    <div class="price-desc">For established professionals</div>
+                    <ul>
+                        <li>Premium profile badge</li>
+                        <li>Unlimited everything</li>
+                        <li>Custom branding</li>
+                        <li>Revenue insights</li>
+                        <li>Dedicated account manager</li>
+                    </ul>
+                    <a href="#download" class="btn btn-secondary">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="creator" id="creators">
+        <div class="container">
+            <div class="creator-content">
+                <div class="section-label" style="text-align:left; color: var(--pink);">For Creators</div>
+                <h2>Earn Commissions Promoting Products You Love</h2>
+                <p>Join the BeautyVault Creator Program and monetize your influence. Share curated collections, create honest reviews, and earn on every sale.</p>
+                <div class="creator-stats">
+                    <div class="creator-stat">
+                        <div class="num">15%</div>
+                        <div class="label">Commission</div>
+                    </div>
+                    <div class="creator-stat">
+                        <div class="num">500+</div>
+                        <div class="label">Brands</div>
+                    </div>
+                    <div class="creator-stat">
+                        <div class="num">$0</div>
+                        <div class="label">To Join</div>
+                    </div>
+                </div>
+                <a href="#download" class="btn btn-primary">Apply to Create</a>
+            </div>
+            <div class="creator-visual">
+                <div class="creator-card">
+                    <div class="avatar"></div>
+                    <div class="name">Sarah Mitchell</div>
+                    <div class="role">Beauty Creator ✨</div>
+                    <div class="earnings">
+                        <div class="amount">$2,340</div>
+                        <div class="period">earned this month</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-label">Testimonials</div>
+            <h2 class="section-title">Loved by Beauty Enthusiasts</h2>
+            <p class="section-subtitle">See what our early community members are saying.</p>
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p>"Finally an app that understands beauty. The consultant booking feature is a game-changer for my skincare routine."</p>
+                    <div class="author">
+                        <div class="avatar"></div>
+                        <div class="info"><strong>Jessica R.</strong><span>Skincare Enthusiast</span></div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p>"I've earned over $5K in commissions in just 3 months. BeautyVault makes it so easy to share products I actually use."</p>
+                    <div class="author">
+                        <div class="avatar"></div>
+                        <div class="info"><strong>Mia K.</strong><span>Beauty Creator</span></div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="stars">★★★★★</div>
+                    <p>"The beauty quiz nailed my skin type and recommended products I would never have found on my own. Love it!"</p>
+                    <div class="author">
+                        <div class="avatar"></div>
+                        <div class="info"><strong>Taylor W.</strong><span>Makeup Lover</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="signup" id="download">
+        <div class="container">
+            <h2>Join the Beauty Revolution</h2>
+            <p>Be the first to know when BeautyVault launches. Join our waitlist today.</p>
+            <form class="signup-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='You\'re In! 💅';">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit">Join Waitlist</button>
+            </form>
+            <div class="download-buttons">
+                <a href="#" class="store-btn">
+                    <span class="store-icon">🍎</span>
+                    <span class="store-text"><small>Download on the</small><span>App Store</span></span>
+                </a>
+                <a href="#" class="store-btn">
+                    <span class="store-icon">▶️</span>
+                    <span class="store-text"><small>Get it on</small><span>Google Play</span></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">Beauty<span>Vault</span></a>
+                    <p>The all-in-one beauty marketplace for shoppers, consultants, and creators.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <a href="#features">Features</a>
+                    <a href="#pricing">For Consultants</a>
+                    <a href="#creators">For Creators</a>
+                    <a href="#">Beauty Quiz</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="#">About</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Press</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 BeautyVault. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+    </script>
+</body>
+</html>
