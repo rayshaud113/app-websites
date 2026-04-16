@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Research Services | Professional Business Research Reports</title>
+    <meta name="description" content="Get data-driven business research reports delivered in 48 hours. Market analysis, competitor research, industry reports, and lead generation.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #1a1a2e;
+            line-height: 1.6;
+            background: #fafafa;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+        .hero h1 span { color: #00d4aa; }
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+        .hero-cta {
+            display: inline-block;
+            background: #00d4aa;
+            color: #0f0c29;
+            padding: 16px 40px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .hero-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,212,170,0.3);
+        }
+
+        /* Stats bar */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            padding: 40px 20px;
+            background: white;
+            border-bottom: 1px solid #eee;
+            flex-wrap: wrap;
+        }
+        .stat { text-align: center; }
+        .stat-number { font-size: 2rem; font-weight: 800; color: #302b63; }
+        .stat-label { font-size: 0.9rem; color: #666; margin-top: 4px; }
+
+        /* Services */
+        .services {
+            padding: 80px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 48px;
+            font-size: 1.1rem;
+        }
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+        .service-card {
+            background: white;
+            border-radius: 12px;
+            padding: 32px 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            transition: transform 0.2s;
+        }
+        .service-card:hover { transform: translateY(-4px); }
+        .service-icon { font-size: 2.5rem; margin-bottom: 16px; }
+        .service-card h3 { font-size: 1.2rem; margin-bottom: 8px; }
+        .service-card p { color: #555; font-size: 0.95rem; }
+
+        /* Pricing */
+        .pricing {
+            padding: 80px 20px;
+            background: white;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .price-card {
+            border: 2px solid #eee;
+            border-radius: 16px;
+            padding: 36px 28px;
+            text-align: center;
+            position: relative;
+            transition: border-color 0.2s;
+        }
+        .price-card.featured {
+            border-color: #00d4aa;
+            box-shadow: 0 8px 30px rgba(0,212,170,0.15);
+        }
+        .price-card.featured::before {
+            content: "MOST POPULAR";
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #00d4aa;
+            color: #0f0c29;
+            padding: 4px 20px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        .price-card h3 { font-size: 1.3rem; margin-bottom: 8px; }
+        .price-amount {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #302b63;
+            margin: 16px 0;
+        }
+        .price-amount span { font-size: 1rem; font-weight: 400; color: #999; }
+        .price-features {
+            list-style: none;
+            text-align: left;
+            margin: 24px 0;
+        }
+        .price-features li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f5f5f5;
+            font-size: 0.95rem;
+            color: #444;
+        }
+        .price-features li::before {
+            content: "✓ ";
+            color: #00d4aa;
+            font-weight: 700;
+        }
+        .price-btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform 0.2s;
+            text-align: center;
+        }
+        .price-btn:hover { transform: translateY(-2px); }
+        .price-btn.primary {
+            background: #00d4aa;
+            color: #0f0c29;
+        }
+        .price-btn.secondary {
+            background: #302b63;
+            color: white;
+        }
+
+        /* How it works */
+        .how-it-works {
+            padding: 80px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            margin-top: 48px;
+        }
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+        }
+        .step-number {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            background: #302b63;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+        .step h3 { margin-bottom: 4px; font-size: 1.1rem; }
+        .step p { color: #555; }
+
+        /* Guarantee */
+        .guarantee {
+            padding: 60px 20px;
+            background: #f0faf7;
+            text-align: center;
+        }
+        .guarantee-box {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .guarantee-icon { font-size: 3rem; margin-bottom: 16px; }
+        .guarantee h2 { margin-bottom: 12px; }
+        .guarantee p { color: #555; }
+
+        /* Footer */
+        .footer {
+            padding: 40px 20px;
+            background: #0f0c29;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .footer a { color: #00d4aa; text-decoration: none; }
+
+        /* Contact form */
+        .contact {
+            padding: 80px 20px;
+            background: #302b63;
+            color: white;
+            text-align: center;
+        }
+        .contact-form {
+            max-width: 500px;
+            margin: 32px auto 0;
+        }
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            width: 100%;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+        .contact-form select option { color: #333; background: white; }
+        .contact-form textarea { min-height: 120px; resize: vertical; }
+        .contact-form button {
+            width: 100%;
+            padding: 16px;
+            background: #00d4aa;
+            color: #0f0c29;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2rem; }
+            .stats { gap: 24px; }
+            .stat-number { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>Business Research Reports<br><span>Delivered in 48 Hours</span></h1>
+        <p>Data-driven market analysis, competitor research, and industry reports that help you make smarter decisions — fast.</p>
+        <a href="#pricing" class="hero-cta">Get Your Report →</a>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats">
+        <div class="stat">
+            <div class="stat-number">48hr</div>
+            <div class="stat-label">Average Delivery</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Satisfaction Rate</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">All</div>
+            <div class="stat-label">Industries Covered</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Research Operations</div>
+        </div>
+    </div>
+
+    <!-- Services -->
+    <section class="services">
+        <h2 class="section-title">What We Research</h2>
+        <p class="section-subtitle">Whatever your business needs — we dig deep and deliver clear answers.</p>
+        <div class="service-grid">
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>Market Analysis</h3>
+                <p>Industry size, growth trends, projections, and opportunities. Know your market inside and out.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔍</div>
+                <h3>Competitor Research</h3>
+                <p>Who's in your space, what they charge, their strengths, weaknesses, and where you can win.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎯</div>
+                <h3>Lead Generation</h3>
+                <p>Qualified business leads with contact info, tailored to your target market and ideal customer.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📋</div>
+                <h3>Feasibility Studies</h3>
+                <p>Is your idea viable? Data-backed analysis with honest, actionable recommendations.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">👥</div>
+                <h3>Audience Research</h3>
+                <p>Who your customers are, where they hang out, what they want, and how to reach them.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💰</div>
+                <h3>Pricing Intelligence</h3>
+                <p>What the market charges, price sensitivity analysis, and optimal pricing strategy for your offer.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works -->
+    <section class="how-it-works">
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-subtitle">Three simple steps to actionable intelligence.</p>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div>
+                    <h3>Tell Us What You Need</h3>
+                    <p>Fill out the brief below or choose a package. Tell us your industry, questions, and what decisions this research will drive.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div>
+                    <h3>We Research & Analyze</h3>
+                    <p>Our research team goes deep — analyzing data, mapping competitors, and building your custom report with cited sources.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div>
+                    <h3>Get Your Report</h3>
+                    <p>Receive a professional PDF with executive summary, findings, visuals, and actionable recommendations. Revisions included.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <h2 class="section-title">Simple Pricing</h2>
+        <p class="section-subtitle">Choose the depth that fits your needs. All reports include cited sources and revisions.</p>
+        <div class="pricing-grid">
+            <div class="price-card">
+                <h3>Starter Report</h3>
+                <div class="price-amount">$30 <span>/ report</span></div>
+                <ul class="price-features">
+                    <li>1 focused research topic</li>
+                    <li>3-5 page PDF report</li>
+                    <li>Key findings & summary</li>
+                    <li>3+ cited sources</li>
+                    <li>2-day delivery</li>
+                    <li>1 revision included</li>
+                </ul>
+                <a href="https://buy.stripe.com/test_9B67sNd7F4OK6vS5DN6Zy00" class="price-btn secondary">Get Started</a>
+            </div>
+            <div class="price-card featured">
+                <h3>Full Report</h3>
+                <div class="price-amount">$75 <span>/ report</span></div>
+                <ul class="price-features">
+                    <li>1-2 research topics</li>
+                    <li>8-12 page PDF report</li>
+                    <li>Market data + competitor overview</li>
+                    <li>Charts & visuals included</li>
+                    <li>10+ cited sources</li>
+                    <li>2-day delivery</li>
+                    <li>2 revisions included</li>
+                </ul>
+                <a href="https://buy.stripe.com/test_dRm3cx3x56WS2fCfen6Zy01" class="price-btn primary">Most Popular →</a>
+            </div>
+            <div class="price-card">
+                <h3>Deep Dive</h3>
+                <div class="price-amount">$150 <span>/ report</span></div>
+                <ul class="price-features">
+                    <li>Comprehensive multi-topic research</li>
+                    <li>15-25 page PDF report</li>
+                    <li>Full market analysis + competitor matrix</li>
+                    <li>Financial data & projections</li>
+                    <li>Executive summary + charts</li>
+                    <li>20+ cited sources</li>
+                    <li>3-day delivery</li>
+                    <li>Unlimited revisions</li>
+                </ul>
+                <a href="https://buy.stripe.com/test_00w14p0kT1Cy5rO4zJ6Zy02" class="price-btn secondary">Go Deep →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / Custom Request -->
+    <section class="contact" id="contact">
+        <h2>Need Something Custom?</h2>
+        <p style="opacity:0.8; margin-top:8px;">Tell us what you're looking for and we'll scope it out — free.</p>
+        <form class="contact-form" action="https://formsubmit.co/rayshaudjenkins@gmail.com" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <select name="service" required>
+                <option value="" disabled selected>What type of research?</option>
+                <option value="market-analysis">Market Analysis</option>
+                <option value="competitor-research">Competitor Research</option>
+                <option value="lead-generation">Lead Generation</option>
+                <option value="feasibility">Feasibility Study</option>
+                <option value="audience-research">Audience Research</option>
+                <option value="pricing-intel">Pricing Intelligence</option>
+                <option value="other">Other / Custom</option>
+            </select>
+            <textarea name="details" placeholder="Tell us about your project. What industry? What questions do you need answered? What decisions will this research drive?" required></textarea>
+            <input type="hidden" name="_subject" value="New Research Inquiry - Elite Research Services">
+            <input type="hidden" name="_captcha" value="false">
+            <button type="submit">Send Inquiry →</button>
+        </form>
+    </section>
+
+    <!-- Guarantee -->
+    <section class="guarantee">
+        <div class="guarantee-box">
+            <div class="guarantee-icon">🛡️</div>
+            <h2>100% Satisfaction Guarantee</h2>
+            <p>If the report doesn't meet your expectations, we'll revise it until it does — or refund you in full. No questions asked.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2026 Elite Research Services — A division of <a href="#">Elite Motorsportz LLC</a></p>
+        <p style="margin-top:8px;">Questions? <a href="mailto:rayshaudjenkins@gmail.com">rayshaudjenkins@gmail.com</a></p>
+    </footer>
+
+</body>
+</html>
